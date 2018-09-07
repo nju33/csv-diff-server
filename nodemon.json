@@ -1,0 +1,7 @@
+{
+  "watch": [
+    ".env",
+    "server",
+    "next.config.js"
+  ]
+}

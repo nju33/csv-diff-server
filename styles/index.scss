@@ -1,0 +1,45 @@
+$backgorundColor: #ccc;
+$fontSize: 14px;
+$color: (
+  background: #ccc,
+  table-border: #222,
+  cell: #fff,
+  header-cell: #343434,
+  accent-cell: #ed784a,
+);
+
+body {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  background: map-get($color, background);
+  margin: 0;
+  font-size: $fontSize;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", "Yu Gothic", YuGothic, sans-serif;
+}
+
+.atom-Table {
+  background: #f8f8f8;
+  border-collapse: collapse;
+  border: 1px solid map-get($color, table-border);
+}
+
+.atom-Table th,
+.atom-Table td {
+  border: 1px solid map-get($color, table-border);
+  padding: .5em;
+  height: 1.5em;
+}
+
+.atom-Table th {
+  background: map-get($color, header-cell);
+}
+
+.atom-Table td {
+  background: map-get($color, cell);
+  white-space: pre;
+}
+
+.atom-Table td[data-equal=false] {
+  background: map-get($color, accent-cell);
+}
