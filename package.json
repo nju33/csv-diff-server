@@ -3,12 +3,13 @@
   "scripts": {
     "dev": "nodemon server",
     "build": "next build",
-    "start": "NODE_ENV=production nodemon server",
+    "start": "NODE_ENV=production node server",
     "test": "jest"
   },
   "dependencies": {
     "@geekcojp/prettier-config": "^0.2.2",
     "@nju33/array-compare": "^0.0.1",
+    "connect-timeout": "^1.9.0",
     "dotenv": "^6.0.0",
     "eslint": "^5.5.0",
     "eslint-config-xo-space": "^0.20.0",
