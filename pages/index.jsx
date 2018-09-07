@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ky from 'ky';
 import {arrayCompare} from '@nju33/array-compare';
+import * as diff from 'diff';
+import range from 'fill-range';
 import '../styles/index.scss';
 
 export default class Index extends React.Component {
@@ -20,6 +22,14 @@ export default class Index extends React.Component {
 
   get commithashes() {
     return this.props.query.diff.split('...');
+  }
+
+  get range() {
+    if (!this.props.query.head) {
+      return [];
+    }
+
+    return range(...this.props.query.head.split(',')).map(v => Number(v));
   }
 
   splitXY(content) {
@@ -79,6 +89,8 @@ export default class Index extends React.Component {
   }
 
   render() {
+    const range = this.range;
+
     return (
       <div>
         <table className="atom-Table">
@@ -92,10 +104,30 @@ export default class Index extends React.Component {
           </thead> */}
           <tbody>
             {this.state.acc.map((lines, i) => {
+              const head = range.indexOf(i + 1) > -1;
+
               return (
-                <tr key={i}>
+                <tr key={i} data-head={head}>
+                  <th className="atom-TableLineNumber">{i + 1}</th>
                   {lines.map((item, j) => {
-                    return <td key={j} data-equal={item.equal}>{item.a}</td>;
+                    const diffs = diff.diffChars(item.b, item.a);
+                    const diffElements = diffs.map((diff, diffI) => {
+                      if (diff.added) {
+                        return <span key={diffI} data-added>{diff.value}</span>;
+                      }
+
+                      if (diff.removed) {
+                        return <span key={diffI} data-removed>{diff.value}</span>;
+                      }
+
+                      return <span key={diffI}>{diff.value}</span>;
+                    });
+
+                    return (
+                      <td key={j} data-equal={item.equal}>
+                        {diffElements}
+                      </td>
+                    );
                   })}
                 </tr>
               );
@@ -142,5 +174,6 @@ Index.propTypes = {
     pat: PropTypes.string,
     filename: PropTypes.string,
     diff: PropTypes.string,
+    head: PropTypes.any,
   }),
 };

@@ -1,11 +1,15 @@
 $backgorundColor: #ccc;
-$fontSize: 14px;
+$fontSize: 13px;
 $color: (
   background: #ccc,
   table-border: #222,
-  cell: #fff,
-  header-cell: #343434,
-  accent-cell: #ed784a,
+  head-cell: #c1c1c1,
+  cell: #e1e1e1,
+  cell-odd: #c3c3c3,
+  accent-cell: #fff,
+  header-cell: #444,
+  diff-added: #6ad548,
+  diff-removed: #d5486a,
 );
 
 body {
@@ -24,6 +28,21 @@ body {
   border: 1px solid map-get($color, table-border);
 }
 
+:root:root:root:root:root .atom-TableLineNumber {
+  font-size: 10px;
+  padding: .2em;
+  background: map-get($color, table-border);
+  color: map-get($color, background);
+  position: sticky;
+}
+
+:root:root:root .atom-Table tr[data-head=true] th,
+:root:root:root .atom-Table tr[data-head=true] td {
+  background: map-get($color, table-border);
+  font-weight: bold;
+  color: #fff;
+}
+
 .atom-Table th,
 .atom-Table td {
   border: 1px solid map-get($color, table-border);
@@ -40,6 +59,22 @@ body {
   white-space: pre;
 }
 
+.atom-Table tr:nth-child(odd) td {
+  background: map-get($color, cell-odd);
+}
+
 .atom-Table td[data-equal=false] {
   background: map-get($color, accent-cell);
+}
+
+.atom-Table th [data-added],
+.atom-Table td [data-added] {
+  border-radius: 2px;
+  background: map-get($color, diff-added);
+}
+
+.atom-Table th [data-removed],
+.atom-Table td [data-removed] {
+  border-radius: 2px;
+  background: map-get($color, diff-removed);
 }

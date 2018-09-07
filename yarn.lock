@@ -2117,7 +2117,7 @@ detect-newline@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/detect-newline/-/detect-newline-2.1.0.tgz#f41f1c10be4b00e87b5f13da680759f2c5bfd3e2"
 
-diff@^3.2.0:
+diff@^3.2.0, diff@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
 
@@ -2749,6 +2749,13 @@ fill-range@^4.0.0:
     is-number "^3.0.0"
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
+
+fill-range@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/fill-range/-/fill-range-6.0.0.tgz#322a3c8b45991d18d38a03a849661bcc4a32ea63"
+  dependencies:
+    is-number "^7.0.0"
+    to-regex-range "^4.0.1"
 
 finalhandler@1.1.1:
   version "1.1.1"
@@ -3584,6 +3591,10 @@ is-number@^3.0.0:
 is-number@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-4.0.0.tgz#0026e37f5454d73e356dfe6564699867c6a7f0ff"
+
+is-number@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
 
 is-obj@^1.0.0:
   version "1.0.1"
@@ -6939,6 +6950,12 @@ to-regex-range@^2.1.0:
   dependencies:
     is-number "^3.0.0"
     repeat-string "^1.6.1"
+
+to-regex-range@^4.0.1:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-4.0.2.tgz#f4556608ab0e94adf697ec8aabc1a777cee80126"
+  dependencies:
+    is-number "^7.0.0"
 
 to-regex@^3.0.1, to-regex@^3.0.2:
   version "3.0.2"

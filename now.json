@@ -1,4 +1,5 @@
 {
   "name": "geek-csv-differ",
-  "alias": "geek-csv-differ"
+  "alias": "geek-csv-differ",
+  "dotenv": true
 }
