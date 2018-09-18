@@ -72,7 +72,7 @@ export default class Index extends React.Component {
               line.push({
                 equal: true,
                 a: '',
-                b: ''
+                b: '',
               });
 
               i++;
@@ -89,7 +89,90 @@ export default class Index extends React.Component {
   }
 
   render() {
-    const range = this.range;
+    const {range} = this;
+    const heads = [];
+    const lines = this.state.acc.map((lines, i) => {
+      const head = range.indexOf(i + 1) > -1;
+
+      const line = (
+        <tr key={i} data-head={head}>
+          <th className="atom-TableLineNumber">{i + 1}</th>
+          {lines.map((item, j) => {
+            const diffs = diff.diffChars(item.b, item.a);
+            const diffElements = diffs.map((diff, diffI) => {
+              if (diff.added) {
+                return (
+                  <span key={diffI} data-added>
+                    {diff.value}
+                  </span>
+                );
+              }
+
+              if (diff.removed) {
+                return (
+                  <span key={diffI} data-removed>
+                    {diff.value}
+                  </span>
+                );
+              }
+
+              return <span key={diffI}>{diff.value}</span>;
+            });
+
+            return (
+              <td key={j} data-equal={item.equal}>
+                {diffElements}
+              </td>
+            );
+          })}
+        </tr>
+      );
+
+      if (head) {
+        heads.push(
+          <tr key={`head-${i}`} data-head={head}>
+            <th className="atom-TableLineNumber"> </th>
+            {lines.map((item, j) => {
+              const diffs = diff.diffChars(item.b, item.a);
+              const diffElements = diffs.map((diff, diffI) => {
+                if (diff.added) {
+                  return (
+                    <span key={diffI} data-added>
+                      {diff.value}
+                    </span>
+                  );
+                }
+
+                if (diff.removed) {
+                  return (
+                    <span key={diffI} data-removed>
+                      {diff.value}
+                    </span>
+                  );
+                }
+
+                return <span key={diffI}>{diff.value}</span>;
+              });
+
+              return (
+                <td key={j} data-equal={item.equal}>
+                  {diffElements}
+                </td>
+              );
+            })}
+          </tr>,
+        );
+      }
+
+      return line;
+    });
+
+    const maxCount = lines.length;
+    let count = 40;
+    while (count < maxCount) {
+      lines.splice(count, 0, heads);
+      count += 40;
+    }
 
     return (
       <div>
@@ -102,67 +185,7 @@ export default class Index extends React.Component {
               <th>d</th>
             </tr>
           </thead> */}
-          <tbody>
-            {this.state.acc.map((lines, i) => {
-              const head = range.indexOf(i + 1) > -1;
-
-              return (
-                <tr key={i} data-head={head}>
-                  <th className="atom-TableLineNumber">{i + 1}</th>
-                  {lines.map((item, j) => {
-                    const diffs = diff.diffChars(item.b, item.a);
-                    const diffElements = diffs.map((diff, diffI) => {
-                      if (diff.added) {
-                        return <span key={diffI} data-added>{diff.value}</span>;
-                      }
-
-                      if (diff.removed) {
-                        return <span key={diffI} data-removed>{diff.value}</span>;
-                      }
-
-                      return <span key={diffI}>{diff.value}</span>;
-                    });
-
-                    return (
-                      <td key={j} data-equal={item.equal}>
-                        {diffElements}
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-            {/* <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr>
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr>
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr>
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr>
-            <tr>
-              <td>a</td>
-              <td>b</td>
-              <td>c</td>
-              <td>d</td>
-            </tr> */}
-          </tbody>
+          <tbody>{lines}</tbody>
         </table>
       </div>
     );
