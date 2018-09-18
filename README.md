@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/nju33/csv-diff-server.svg?style=svg&circle-token=af43554fbd3a78b6d25b61fecdebb657a03adceb)](https://circleci.com/gh/nju33/csv-diff-server)
+
 ## required params
 
 - `pat`GitHub's personal access token
