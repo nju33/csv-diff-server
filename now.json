@@ -1,5 +1,5 @@
 {
-  "name": "geek-csv-differ",
-  "alias": "geek-csv-differ",
+  "name": "csv-diff-server",
+  "alias": "csv-diff-server",
   "dotenv": true
 }
