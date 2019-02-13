@@ -21,7 +21,7 @@
     "ky": "0.2.0",
     "next": "6.1.1",
     "prettier": "1.14.2",
-    "prop-types": "15.6.2",
+    "prop-types": "15.7.2",
     "react": "16.5.0",
     "react-dom": "16.5.0",
     "signale": "1.2.1"
