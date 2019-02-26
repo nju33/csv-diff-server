@@ -24,7 +24,7 @@
     "prop-types": "15.6.2",
     "react": "16.5.0",
     "react-dom": "16.5.0",
-    "signale": "1.2.1"
+    "signale": "1.4.0"
   },
   "devDependencies": {
     "@zeit/next-sass": "0.2.0",
