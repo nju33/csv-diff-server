@@ -30,7 +30,7 @@
     "@zeit/next-sass": "0.2.0",
     "eslint-plugin-jest": "21.22.0",
     "eslint-plugin-react": "7.11.1",
-    "jest": "23.6.0",
+    "jest": "26.6.1",
     "node-sass": "4.9.3",
     "nodemon": "1.18.4",
     "supertest": "3.3.0"
